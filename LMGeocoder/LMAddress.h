@@ -90,4 +90,6 @@
  */
 - (nonnull id)initWithLocationData:(nonnull id)locationData forServiceType:(int)serviceType;
 
+- (NSString *)component:(NSString *)component ofType:(NSString *)type;
+
 @end
