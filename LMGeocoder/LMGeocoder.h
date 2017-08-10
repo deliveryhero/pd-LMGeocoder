@@ -87,6 +87,37 @@ typedef void (^LMGeocodeCallback) (NSArray<LMAddress *> * _Nullable results,  NS
                                      error:(NSError **)error;
 
 /*!
+ *  Submits a forward-geocoding request using the specified string.
+ *  After initiating a forward-geocoding request, do not attempt to initiate another forward- or reverse-geocoding request.
+ *  Geocoding requests are rate-limited for each app, so making too many requests in a short period of time may cause some of the requests to fail.
+ *  When the maximum rate is exceeded, the geocoder passes an error object to your completion handler.
+ *
+ *  @param addressString The string describing the location you want to look up.
+ *  @param countryCode The 2 letter country code.
+ *  @param service       The service API used to geocode.
+ *  @param handler       The callback to invoke with the geocode results. The callback will be invoked asynchronously from the main thread.
+ */
+- (void)geocodeAddressString:(NSString *)addressString
+               withinCountry:(nullable NSString *)countryCode
+                     service:(LMGeocoderService)service
+           completionHandler:(nullable LMGeocodeCallback)handler;
+
+/*!
+ *  Submits a synchronous forward-geocoding request using the specified string.
+ *
+ *  @param addressString The string describing the location you want to look up.
+ *  @param countryCode The 2 letter country code.
+ *  @param service       The service API used to geocode.
+ *  @param error         The error.
+ *
+ *  @return The geocode results.
+ */
+- (nullable NSArray *)geocodeAddressString:(NSString *)addressString
+                             withinCountry:(nullable NSString *)countryCode
+                                   service:(LMGeocoderService)service
+                                     error:(NSError **)error;
+
+/*!
  *  Submits a reverse-geocoding request for the specified coordinate.
  *  After initiating a reverse-geocoding request, do not attempt to initiate another reverse- or forward-geocoding request.
  *  Geocoding requests are rate-limited for each app, so making too many requests in a short period of time may cause some of the requests to fail. 
@@ -110,6 +141,36 @@ typedef void (^LMGeocodeCallback) (NSArray<LMAddress *> * _Nullable results,  NS
  *  @return The reverse geocode results.
  */
 - (nullable NSArray *)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
+                                       service:(LMGeocoderService)service
+                                         error:(NSError **)error;
+
+/*!
+ *  Submits a reverse-geocoding request for the specified coordinate then return results in specified language.
+ *  After initiating a reverse-geocoding request, do not attempt to initiate another reverse- or forward-geocoding request.
+ *  Geocoding requests are rate-limited for each app, so making too many requests in a short period of time may cause some of the requests to fail.
+ *  When the maximum rate is exceeded, the geocoder passes an error object to your completion handler.
+ *
+ *  @param coordinate The coordinate to look up.
+ *  @param service    The service API used to reverse geocode.
+ *  @param handler    The callback to invoke with the reverse geocode results. The callback will be invoked asynchronously from the main thread.
+ */
+- (void)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
+                withLanguageCode:(nullable NSString *)languageCode
+                         service:(LMGeocoderService)service
+               completionHandler:(nullable LMGeocodeCallback)handler;
+
+
+/*!
+ *  Submits a synchronous reverse-geocoding request for the specified coordinate using specified language.
+ *
+ *  @param coordinate The coordinate to look up.
+ *  @param service    The service API used to geocode.
+ *  @param error      The error.
+ *
+ *  @return The reverse geocode results.
+ */
+- (nullable NSArray *)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
+                              withLanguageCode:(nullable NSString *)languageCode
                                        service:(LMGeocoderService)service
                                          error:(NSError **)error;
 

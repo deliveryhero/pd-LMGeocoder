@@ -14,6 +14,11 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 #define kGoogleAPIReverseGeocodingURL(lat, lng) [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=true", lat, lng];
 #define kGoogleAPIGeocodingURL(address)         [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=true", address];
 #define kGoogleAPIURLWithKey(url, key)          [NSString stringWithFormat:@"%@&key=%@", url, key];
+// final format for country is e.g components=country:DE
+#define countryCodeParam @"components=country"
+#define languageParam @"language="
+#define kGoogleAPIURLAppendCountry(url, params) [NSString stringWithFormat:@"%@&%@:%@", url, countryCodeParam, params];
+#define kGoogleAPIURLAppendLanguage(url, params)[NSString stringWithFormat:@"%@&%@=%@", url, languageParam, params];
 
 @interface LMGeocoder ()
 
@@ -57,10 +62,19 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 
 - (void)geocodeAddressString:(NSString *)addressString
                      service:(LMGeocoderService)service
-           completionHandler:(LMGeocodeCallback)handler
-{
+           completionHandler:(LMGeocodeCallback)handler {
+    return [self geocodeAddressString:addressString
+                        withinCountry:nil
+                              service:service
+                    completionHandler:handler];
+}
+
+- (void)geocodeAddressString:(NSString *)addressString
+               withinCountry:(nullable NSString *)countryCode
+                     service:(LMGeocoderService)service
+           completionHandler:(LMGeocodeCallback)handler {
     _isGeocoding = YES;
-    
+
     // Check address string
     if (addressString == nil || addressString.length == 0)
     {
@@ -68,7 +82,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
         NSError *error = [NSError errorWithDomain:kLMGeocoderErrorDomain
                                              code:kLMGeocoderErrorInvalidAddressString
                                          userInfo:nil];
-        
+
         _isGeocoding = NO;
         if (handler) {
             handler(nil, error);
@@ -85,10 +99,13 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                 NSString *urlString = kGoogleAPIGeocodingURL(addressString);
                 if (self.googleAPIKey != nil) {
                     urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
+                    if (countryCode != nil) {
+                        urlString = kGoogleAPIURLAppendCountry(urlString, countryCode);
+                    }
                 }
                 [self buildAsynchronousRequestFromURLString:urlString
                                           completionHandler:^(NSArray<LMAddress *> * _Nullable results, NSError * _Nullable error) {
-                                              
+
                                               _isGeocoding = NO;
                                               if (handler) {
                                                   handler(results, error);
@@ -101,9 +118,9 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                 // Geocode using Apple service
                 [self.appleGeocoder geocodeAddressString:addressString
                                        completionHandler:^(NSArray *placemarks, NSError *error) {
-                                           
+
                                            _isGeocoding = NO;
-                                           
+
                                            if (!error && placemarks.count) {
                                                // Request successful --> Parse response results
                                                [self parseGeocodingResponseResults:placemarks service:kLMGeocoderAppleService];
@@ -127,6 +144,17 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                                    service:(LMGeocoderService)service
                                      error:(NSError **)error
 {
+    return [self geocodeAddressString:addressString
+                        withinCountry:nil
+                              service:service
+                                error:error];
+}
+
+- (nullable NSArray *)geocodeAddressString:(nonnull NSString *)addressString
+                             withinCountry:(nullable NSString *)countryCode
+                                   service:(LMGeocoderService)service
+                                     error:(NSError **)error
+{
     // Check address string
     if (addressString == nil || addressString.length == 0)
     {
@@ -143,6 +171,9 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
         if (self.googleAPIKey != nil) {
             urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
         }
+        if (countryCode != nil) {
+            urlString = kGoogleAPIURLAppendCountry(urlString, countryCode);
+        }
         NSArray *finalResults = [self buildSynchronousRequestFromURLString:urlString];
         return finalResults;
     }
@@ -153,10 +184,19 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 
 - (void)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
                          service:(LMGeocoderService)service
-               completionHandler:(LMGeocodeCallback)handler
-{
+               completionHandler:(LMGeocodeCallback)handler {
+    return [self reverseGeocodeCoordinate:coordinate
+                         withLanguageCode:nil
+                                  service:service
+                        completionHandler:handler];
+}
+
+- (void)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
+                withLanguageCode:(nullable NSString *)languageCode
+                         service:(LMGeocoderService)service
+               completionHandler:(LMGeocodeCallback)handler {
     _isGeocoding = YES;
-    
+
     // Check location coordinate
     if (!CLLocationCoordinate2DIsValid(coordinate))
     {
@@ -164,7 +204,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
         NSError *error = [NSError errorWithDomain:kLMGeocoderErrorDomain
                                              code:kLMGeocoderErrorInvalidCoordinate
                                          userInfo:nil];
-        
+
         _isGeocoding = NO;
         if (handler) {
             handler(nil, error);
@@ -182,9 +222,12 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                 if (self.googleAPIKey != nil) {
                     urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
                 }
+                if (languageCode != nil) {
+                    urlString = kGoogleAPIURLAppendLanguage(urlString, languageCode);
+                }
                 [self buildAsynchronousRequestFromURLString:urlString
                                           completionHandler:^(NSArray<LMAddress *> * _Nullable results, NSError * _Nullable error) {
-                                              
+
                                               _isGeocoding = NO;
                                               if (handler) {
                                                   handler(results, error);
@@ -199,9 +242,9 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                                                                   longitude:coordinate.longitude];
                 [self.appleGeocoder reverseGeocodeLocation:location
                                          completionHandler:^(NSArray *placemarks, NSError *error) {
-                                             
+
                                              _isGeocoding = NO;
-                                             
+
                                              if (!error && placemarks.count) {
                                                  // Request successful --> Parse response results
                                                  [self parseGeocodingResponseResults:placemarks service:kLMGeocoderAppleService];
@@ -225,6 +268,17 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                                        service:(LMGeocoderService)service
                                          error:(NSError **)error
 {
+    return [self reverseGeocodeCoordinate:coordinate
+                         withLanguageCode:nil
+                                  service:service
+                                    error:error];
+}
+
+- (nullable NSArray *)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate
+                              withLanguageCode:(nullable NSString *)languageCode
+                                       service:(LMGeocoderService)service
+                                         error:(NSError **)error
+{
     // Check location coordinate
     if (!CLLocationCoordinate2DIsValid(coordinate))
     {
@@ -241,6 +295,9 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
         if (self.googleAPIKey != nil) {
             urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
         }
+        if (languageCode != nil) {
+            urlString = kGoogleAPIURLAppendLanguage(urlString, languageCode);
+        }
         NSArray *finalResults = [self buildSynchronousRequestFromURLString:urlString];
         return finalResults;
     }
@@ -254,7 +311,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
     if (self.appleGeocoder) {
         [self.appleGeocoder cancelGeocode];
     }
-    
+
     if (self.googleGeocoderTask) {
         [self.googleGeocoderTask cancel];
     }
@@ -268,12 +325,12 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 {
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-    
+
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     self.googleGeocoderTask = [session dataTaskWithRequest:request
                                          completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                             
+
                                              if (!error && data)
                                              {
                                                  // Request successful --> Parse response to JSON
@@ -290,7 +347,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                                                          // Status OK --> Parse response results
                                                          NSArray *locationDicts = [result objectForKey:@"results"];
                                                          NSArray *finalResults = [self parseGeocodingResponseResults:locationDicts service:kLMGeocoderGoogleService];
-                                                         
+
                                                          if (handler) {
                                                              handler(finalResults, nil);
                                                          }
@@ -326,7 +383,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 {
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-    
+
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -344,12 +401,12 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
                 // Status OK --> Parse response results
                 NSArray *locationDicts = [result objectForKey:@"results"];
                 NSArray *finalResults = [self parseGeocodingResponseResults:locationDicts service:kLMGeocoderGoogleService];
-                
+
                 return finalResults;
             }
         }
     }
-    
+
     return nil;
 }
 
@@ -359,12 +416,12 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 - (NSArray *)parseGeocodingResponseResults:(NSArray *)responseResults service:(LMGeocoderService)service
 {
     NSMutableArray *finalResults = [NSMutableArray new];
-    
+
     for (id responseResult in responseResults) {
         LMAddress *address = [[LMAddress alloc] initWithLocationData:responseResult forServiceType:service];
         [finalResults addObject:address];
     }
-    
+
     return finalResults;
 }
 
