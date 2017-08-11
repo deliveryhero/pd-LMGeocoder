@@ -16,7 +16,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 #define kGoogleAPIURLWithKey(url, key)          [NSString stringWithFormat:@"%@&key=%@", url, key];
 // final format for country is e.g components=country:DE
 #define countryCodeParam @"components=country"
-#define languageParam @"language="
+#define languageParam @"language"
 #define kGoogleAPIURLAppendCountry(url, params) [NSString stringWithFormat:@"%@&%@:%@", url, countryCodeParam, params];
 #define kGoogleAPIURLAppendLanguage(url, params)[NSString stringWithFormat:@"%@&%@=%@", url, languageParam, params];
 
