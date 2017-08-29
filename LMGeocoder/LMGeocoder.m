@@ -13,6 +13,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
 
 #define kGoogleAPIReverseGeocodingURL(lat, lng) [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=true", lat, lng];
 #define kGoogleAPIGeocodingURL(address)         [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=true", address];
+#define kGoogleAPIPlaceDetailsURL(placeId)      [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?place_id=%@", placeId];
 #define kGoogleAPIURLWithKey(url, key)          [NSString stringWithFormat:@"%@&key=%@", url, key];
 // final format for country is e.g components=country:DE
 #define countryCodeParam @"components=country"
@@ -57,6 +58,67 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
     return self;
 }
 
+#pragma mark - PlaceDetails
+
+- (void)geocodePlaceId:(NSString *)placeId
+               service:(LMGeocoderService)service
+     completionHandler:(LMGeocodeCallback)handler {
+    _isGeocoding = YES;
+
+    // Check address string
+    if (placeId == nil || placeId.length == 0) {
+        NSError *error = [NSError errorWithDomain:kLMGeocoderErrorDomain
+                                             code:kLMGeocoderErrorInvalidAddressString
+                                         userInfo:nil];
+        _isGeocoding = NO;
+        if (handler) {
+            handler(nil, error);
+        }
+    } else {
+        switch (service) {
+            case kLMGeocoderGoogleService: {
+                // Geocode using Google service
+                NSString *urlString = kGoogleAPIPlaceDetailsURL(placeId);
+                urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
+                [self buildAsynchronousRequestFromURLString:urlString
+                                          completionHandler:^(NSArray<LMAddress *> *_Nullable results, NSError *_Nullable error) {
+                                              _isGeocoding = NO;
+                                              if (handler) {
+                                                  handler(results, error);
+                                              }
+                                          }];
+                break;
+            }
+            case kLMGeocoderAppleService: {
+                // TODO: Implement it later
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+- (nullable NSArray *)geocodeAddressString:(NSString *)placeId
+                                   service:(LMGeocoderService)service
+                                     error:(NSError **)error {
+    // Check address string
+    if (placeId == nil || placeId.length == 0) {
+        // Invalid address string --> Return
+        *error = [NSError errorWithDomain:kLMGeocoderErrorDomain
+                                     code:kLMGeocoderErrorInvalidAddressString
+                                 userInfo:nil];
+        return nil;
+    } else {
+        // Valid address string --> Geocode using Google service
+        NSString *urlString = kGoogleAPIPlaceDetailsURL(placeId);
+        if (self.googleAPIKey != nil) {
+            urlString = kGoogleAPIURLWithKey(urlString, self.googleAPIKey)
+        }
+        NSArray *finalResults = [self buildSynchronousRequestFromURLString:urlString];
+        return finalResults;
+    }
+}
 
 #pragma mark - GEOCODE
 

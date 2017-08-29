@@ -86,6 +86,14 @@ typedef void (^LMGeocodeCallback) (NSArray<LMAddress *> * _Nullable results,  NS
                                    service:(LMGeocoderService)service
                                      error:(NSError **)error;
 
+- (void)geocodePlaceId:(NSString *)placeId
+               service:(LMGeocoderService)service
+     completionHandler:(nullable LMGeocodeCallback)handler;
+
+- (nullable NSArray *)geocodePlaceId:(NSString *)addressString
+                             service:(LMGeocoderService)service
+                               error:(NSError **)error;
+
 /*!
  *  Submits a forward-geocoding request using the specified string.
  *  After initiating a forward-geocoding request, do not attempt to initiate another forward- or reverse-geocoding request.
