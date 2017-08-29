@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name              = 'LMGeocoder'
-s.version           = '1.1.2'
+s.version           = '1.2.0'
 s.summary           = 'Simple wrapper for geocoding and reverse geocoding, using both Google Geocoding API and Apple iOS Geocoding Framework.'
 s.homepage          = 'https://github.com/foodora/LMGeocoder'
 s.platform          = :ios, '7.0'
