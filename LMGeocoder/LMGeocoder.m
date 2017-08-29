@@ -99,7 +99,7 @@ static NSString * const kLMGeocoderErrorDomain = @"LMGeocoderError";
     }
 }
 
-- (nullable NSArray *)geocodeAddressString:(NSString *)placeId
+- (nullable NSArray *)geocodePlaceId:(NSString *)placeId
                                    service:(LMGeocoderService)service
                                      error:(NSError **)error {
     // Check address string
