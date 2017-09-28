@@ -71,7 +71,7 @@
 @property (nonatomic, readonly, copy, nullable) NSString *formattedAddress;
 
 /*!
- *  The formatted address.
+ *  The Google Place Id.
  */
 @property (nonatomic, readonly, copy, nullable) NSString *googlePlaceId;
 

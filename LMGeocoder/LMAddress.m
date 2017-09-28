@@ -24,7 +24,6 @@ static NSString * const LMFormattedAddressKey       = @"formattedAddress";
 static NSString * const LMLinesKey                  = @"lines";
 static NSString * const LMGoogkePlaceIdKey          = @"placeId";
 
-
 #define allStringKeys @[LMStreetNumberKey, LMRouteKey, LMLocalityKey, LMSubLocalityKey, \
                         LMAdministrativeAreaKey, LMSubAdministrativeAreaKey, LMPostalCodeKey, \
                         LMCountryKey, LMISOCountryCodeKey, LMFormattedAddressKey, LMGoogkePlaceIdKey]
