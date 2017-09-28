@@ -22,10 +22,12 @@ static NSString * const LMCountryKey                = @"country";
 static NSString * const LMISOCountryCodeKey         = @"ISOcountryCode";
 static NSString * const LMFormattedAddressKey       = @"formattedAddress";
 static NSString * const LMLinesKey                  = @"lines";
+static NSString * const LMGoogkePlaceIdKey          = @"placeId";
+
 
 #define allStringKeys @[LMStreetNumberKey, LMRouteKey, LMLocalityKey, LMSubLocalityKey, \
                         LMAdministrativeAreaKey, LMSubAdministrativeAreaKey, LMPostalCodeKey, \
-                        LMCountryKey, LMISOCountryCodeKey, LMFormattedAddressKey]
+                        LMCountryKey, LMISOCountryCodeKey, LMFormattedAddressKey, LMGoogkePlaceIdKey]
 
 @implementation LMAddress
 
@@ -42,6 +44,7 @@ static NSString * const LMLinesKey                  = @"lines";
 @synthesize formattedAddress = _formattedAddress;
 @synthesize lines = _lines;
 @synthesize googleAddressComponents = _googleAddressComponents;
+@synthesize googlePlaceId = _googlePlaceId;
 
 #pragma mark - INIT
 
@@ -115,6 +118,7 @@ static NSString * const LMLinesKey                  = @"lines";
         _formattedAddress = formattedAddress;
         _lines = [formattedAddress componentsSeparatedByString:@", "];
         _googleAddressComponents = addressComponents;
+        _googlePlaceId = locationDict[@"place_id"];
     }
 }
 
