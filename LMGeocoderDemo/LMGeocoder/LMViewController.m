@@ -54,6 +54,9 @@
     
     // Customize UI
     [self customizeUI];
+
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:52.524730 longitude:13.388818];
+    [self locationManager:self.locationManager didUpdateLocations:@[loc]];
 }
 
 - (void)customizeUI
@@ -109,6 +112,10 @@
                                             
                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                 if (results.count && !error) {
+
+                                                    [self cacheResults:results];
+                                                    [self loadCached];
+
                                                     LMAddress *address = [results firstObject];
                                                     self.addressLabel.text = address.formattedAddress;
                                                 }
@@ -117,6 +124,21 @@
                                                 }
                                             });
                                         }];
+}
+
+- (NSString *)cacheFilePath {
+
+    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    return [documentDir stringByAppendingPathComponent:@"abcdef"];
+}
+
+- (void)cacheResults:(NSArray *)results {
+    [NSKeyedArchiver archiveRootObject:results toFile:[self cacheFilePath]];
+}
+
+- (void)loadCached {
+    NSArray *locations = [[NSKeyedUnarchiver unarchiveObjectWithFile:[self cacheFilePath]] mutableCopy];
+    NSLog(@"%@", locations);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

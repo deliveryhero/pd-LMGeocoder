@@ -22,7 +22,7 @@ static NSString * const LMCountryKey                = @"country";
 static NSString * const LMISOCountryCodeKey         = @"ISOcountryCode";
 static NSString * const LMFormattedAddressKey       = @"formattedAddress";
 static NSString * const LMLinesKey                  = @"lines";
-static NSString * const LMGoogkePlaceIdKey          = @"placeId";
+static NSString * const LMGoogkePlaceIdKey          = @"googlePlaceId";
 
 #define allStringKeys @[LMStreetNumberKey, LMRouteKey, LMLocalityKey, LMSubLocalityKey, \
                         LMAdministrativeAreaKey, LMSubAdministrativeAreaKey, LMPostalCodeKey, \
