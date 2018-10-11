@@ -25,8 +25,8 @@
 		BB49FC9E216F6EBE00B57D26 /* LMGeocoderFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB49FCA3216F6ED300B57D26 /* LMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94390193AF00100A929FD /* LMAddress.m */; };
 		BB49FCA4216F6ED300B57D26 /* LMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94392193AF00100A929FD /* LMGeocoder.m */; };
-		BB49FCA5216F6F6C00B57D26 /* LMGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C94391193AF00100A929FD /* LMGeocoder.h */; };
-		BB49FCA6216F6F6C00B57D26 /* LMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C9438F193AF00100A929FD /* LMAddress.h */; };
+		BB49FCA5216F6F6C00B57D26 /* LMGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C94391193AF00100A929FD /* LMGeocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB49FCA6216F6F6C00B57D26 /* LMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C9438F193AF00100A929FD /* LMAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
