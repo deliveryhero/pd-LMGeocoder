@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  *  A result from a reverse geocode request, containing a human-readable address.
  *  Some of the fields may be nil, indicating they are not present.
@@ -93,8 +95,10 @@
  *
  *  @return object with all data set for use
  */
-- (nonnull id)initWithLocationData:(nonnull id)locationData forServiceType:(int)serviceType;
+- (id)initWithLocationData:(id)locationData forServiceType:(int)serviceType;
 
-- (NSString *)component:(NSString *)component ofType:(NSString *)type;
+- (nullable NSString *)component:(NSString *)component ofType:(NSString *)type;
 
 @end
+
+NS_ASSUME_NONNULL_END
