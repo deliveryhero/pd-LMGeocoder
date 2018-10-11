@@ -18,11 +18,40 @@
 		62C9436A193AEC5300A929FD /* LMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94369193AEC5300A929FD /* LMAppDelegate.m */; };
 		62C94370193AEC5300A929FD /* LMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9436F193AEC5300A929FD /* LMViewController.m */; };
 		62C94372193AEC5300A929FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C94371193AEC5300A929FD /* Images.xcassets */; };
-		62C94393193AF00100A929FD /* LMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94390193AF00100A929FD /* LMAddress.m */; };
-		62C94394193AF00100A929FD /* LMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94392193AF00100A929FD /* LMGeocoder.m */; };
 		62C943A7193B25CF00A929FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C943A6193B25CF00A929FD /* CoreLocation.framework */; };
 		62C943A9193B316200A929FD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C943A8193B316200A929FD /* AVFoundation.framework */; };
+		BB49FC9A216F6EBE00B57D26 /* LMGeocoderFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = BB49FC98216F6EBE00B57D26 /* LMGeocoderFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB49FC9D216F6EBE00B57D26 /* LMGeocoderFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */; };
+		BB49FC9E216F6EBE00B57D26 /* LMGeocoderFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB49FCA3216F6ED300B57D26 /* LMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94390193AF00100A929FD /* LMAddress.m */; };
+		BB49FCA4216F6ED300B57D26 /* LMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C94392193AF00100A929FD /* LMGeocoder.m */; };
+		BB49FCA5216F6F6C00B57D26 /* LMGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C94391193AF00100A929FD /* LMGeocoder.h */; };
+		BB49FCA6216F6F6C00B57D26 /* LMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C9438F193AF00100A929FD /* LMAddress.h */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB49FC9B216F6EBE00B57D26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62C9434E193AEC5300A929FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB49FC95216F6EBE00B57D26;
+			remoteInfo = LMGeocoderFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB49FCA2216F6EBE00B57D26 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BB49FC9E216F6EBE00B57D26 /* LMGeocoderFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		402393B81BC5FDCA00FD5347 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +77,9 @@
 		62C94392193AF00100A929FD /* LMGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMGeocoder.m; sourceTree = "<group>"; };
 		62C943A6193B25CF00A929FD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		62C943A8193B316200A929FD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LMGeocoderFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB49FC98216F6EBE00B57D26 /* LMGeocoderFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMGeocoderFramework.h; sourceTree = "<group>"; };
+		BB49FC99216F6EBE00B57D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +91,15 @@
 				62C943A7193B25CF00A929FD /* CoreLocation.framework in Frameworks */,
 				62C9435C193AEC5300A929FD /* CoreGraphics.framework in Frameworks */,
 				62C9435E193AEC5300A929FD /* UIKit.framework in Frameworks */,
+				BB49FC9D216F6EBE00B57D26 /* LMGeocoderFramework.framework in Frameworks */,
 				62C9435A193AEC5300A929FD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB49FC93216F6EBE00B57D26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				62C9435F193AEC5300A929FD /* LMGeocoder */,
+				BB49FC97216F6EBE00B57D26 /* LMGeocoderFramework */,
 				62C94358193AEC5300A929FD /* Frameworks */,
 				62C94357193AEC5300A929FD /* Products */,
 			);
@@ -88,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				62C94356193AEC5300A929FD /* LMGeocoder.app */,
+				BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,7 +154,6 @@
 				62C9436E193AEC5300A929FD /* LMViewController.h */,
 				62C9436F193AEC5300A929FD /* LMViewController.m */,
 				402393B81BC5FDCA00FD5347 /* Main.storyboard */,
-				62C9438E193AEDFC00A929FD /* LMGeocoder */,
 				5CA6F41C1BFED00000BF7C86 /* Vender */,
 				62C94360193AEC5300A929FD /* Supporting Files */,
 			);
@@ -132,19 +173,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		62C9438E193AEDFC00A929FD /* LMGeocoder */ = {
+		BB49FC97216F6EBE00B57D26 /* LMGeocoderFramework */ = {
 			isa = PBXGroup;
 			children = (
 				62C94391193AF00100A929FD /* LMGeocoder.h */,
 				62C94392193AF00100A929FD /* LMGeocoder.m */,
 				62C9438F193AF00100A929FD /* LMAddress.h */,
 				62C94390193AF00100A929FD /* LMAddress.m */,
+				BB49FC98216F6EBE00B57D26 /* LMGeocoderFramework.h */,
+				BB49FC99216F6EBE00B57D26 /* Info.plist */,
 			);
-			name = LMGeocoder;
-			path = ../../LMGeocoder;
+			path = LMGeocoderFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BB49FC91216F6EBE00B57D26 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB49FC9A216F6EBE00B57D26 /* LMGeocoderFramework.h in Headers */,
+				BB49FCA5216F6F6C00B57D26 /* LMGeocoder.h in Headers */,
+				BB49FCA6216F6F6C00B57D26 /* LMAddress.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		62C94355193AEC5300A929FD /* LMGeocoder */ = {
@@ -154,15 +209,35 @@
 				62C94352193AEC5300A929FD /* Sources */,
 				62C94353193AEC5300A929FD /* Frameworks */,
 				62C94354193AEC5300A929FD /* Resources */,
+				BB49FCA2216F6EBE00B57D26 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BB49FC9C216F6EBE00B57D26 /* PBXTargetDependency */,
 			);
 			name = LMGeocoder;
 			productName = LMGeocoder;
 			productReference = 62C94356193AEC5300A929FD /* LMGeocoder.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BB49FC95216F6EBE00B57D26 /* LMGeocoderFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB49FCA1216F6EBE00B57D26 /* Build configuration list for PBXNativeTarget "LMGeocoderFramework" */;
+			buildPhases = (
+				BB49FC91216F6EBE00B57D26 /* Headers */,
+				BB49FC92216F6EBE00B57D26 /* Sources */,
+				BB49FC93216F6EBE00B57D26 /* Frameworks */,
+				BB49FC94216F6EBE00B57D26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LMGeocoderFramework;
+			productName = LMGeocoderFramework;
+			productReference = BB49FC96216F6EBE00B57D26 /* LMGeocoderFramework.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -173,6 +248,12 @@
 				CLASSPREFIX = LM;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = LMinh;
+				TargetAttributes = {
+					BB49FC95216F6EBE00B57D26 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 62C94351193AEC5300A929FD /* Build configuration list for PBXProject "LMGeocoder" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,6 +269,7 @@
 			projectRoot = "";
 			targets = (
 				62C94355193AEC5300A929FD /* LMGeocoder */,
+				BB49FC95216F6EBE00B57D26 /* LMGeocoderFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +286,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB49FC94216F6EBE00B57D26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -212,15 +301,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C94366193AEC5300A929FD /* main.m in Sources */,
-				62C94393193AF00100A929FD /* LMAddress.m in Sources */,
-				62C94394193AF00100A929FD /* LMGeocoder.m in Sources */,
 				5CA6F41B1BFECF8300BF7C86 /* LMLabel.m in Sources */,
 				62C9436A193AEC5300A929FD /* LMAppDelegate.m in Sources */,
 				62C94370193AEC5300A929FD /* LMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB49FC92216F6EBE00B57D26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB49FCA4216F6ED300B57D26 /* LMGeocoder.m in Sources */,
+				BB49FCA3216F6ED300B57D26 /* LMAddress.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB49FC9C216F6EBE00B57D26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB49FC95216F6EBE00B57D26 /* LMGeocoderFramework */;
+			targetProxy = BB49FC9B216F6EBE00B57D26 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		62C94362193AEC5300A929FD /* InfoPlist.strings */ = {
@@ -315,6 +419,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LMGeocoder/LMGeocoder-Prefix.pch";
 				INFOPLIST_FILE = "LMGeocoder/LMGeocoder-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lminhtm.LMGeocoder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -333,11 +439,108 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LMGeocoder/LMGeocoder-Prefix.pch";
 				INFOPLIST_FILE = "LMGeocoder/LMGeocoder-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lminhtm.LMGeocoder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		BB49FC9F216F6EBE00B57D26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = LMGeocoderFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dh.LMGeocoderFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BB49FCA0216F6EBE00B57D26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = LMGeocoderFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dh.LMGeocoderFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -358,6 +561,15 @@
 			buildConfigurations = (
 				62C94389193AEC5300A929FD /* Debug */,
 				62C9438A193AEC5300A929FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB49FCA1216F6EBE00B57D26 /* Build configuration list for PBXNativeTarget "LMGeocoderFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB49FC9F216F6EBE00B57D26 /* Debug */,
+				BB49FCA0216F6EBE00B57D26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
