@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LMGeocoder.h"
+#import "LMAddress.h"
 
 //! Project version number for LMGeocoderFramework.
 FOUNDATION_EXPORT double LMGeocoderFrameworkVersionNumber;

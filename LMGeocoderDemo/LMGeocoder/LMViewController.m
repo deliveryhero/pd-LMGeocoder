@@ -9,8 +9,8 @@
 #import "LMViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "LMGeocoder.h"
 #import "LMLabel.h"
+@import LMGeocoderFramework;
 
 @interface LMViewController () <CLLocationManagerDelegate>
 
